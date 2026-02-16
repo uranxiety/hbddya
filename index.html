@@ -130,7 +130,7 @@
 
             const ratio = highAvg / (lowAvg + 1);
 
-            const BLOW_RATIO_THRESHOLD = 0.5;
+            const BLOW_RATIO_THRESHOLD = 60;
 
             if (ratio > BLOW_RATIO_THRESHOLD && !blown) {
               blown = true;
@@ -170,3 +170,4 @@
     </script>
   </body>
 </html>
+
