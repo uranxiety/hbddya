@@ -6868,4 +6868,39 @@ body {
   box-shadow: none !important;
   opacity: 0 !important;
 }
+.flame{
+  width:2px;
+  height:2px;
+  background:orange;
+  position:absolute;
+  top:-2px;
+  left:0;
+  animation:flicker 0.25s infinite steps(2);
+}
+
+.flame::after{
+  content:"";
+  position:absolute;
+  width:2px;
+  height:2px;
+  background:yellow;
+  top:-1px;
+  left:0;
+}
+
+@keyframes flicker{
+  0%{
+    transform:translateY(0);
+    opacity:1;
+  }
+  50%{
+    transform:translateY(-1px);
+    opacity:.8;
+  }
+  100%{
+    transform:translateY(0);
+    opacity:1;
+  }
+}
+
 
