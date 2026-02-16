@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Birthday Cake 🎂</title>
+    <title>habede dya</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -110,32 +110,41 @@
           let blown = false;
 
           function detectBlow() {
-            analyser.getByteFrequencyData(dataArray);
+           analyser.getByteFrequencyData(dataArray);
 
-            let highFreqSum = 0;
-            let lowFreqSum = 0;
+let sum = 0;
+for (let i = 0; i < dataArray.length; i++) {
+  sum += dataArray[i];
+}
 
-            const midpoint = dataArray.length / 2;
+const avg = sum / dataArray.length;
+const VOLUME_THRESHOLD = 35;
 
-            for (let i = 0; i < dataArray.length; i++) {
-              if (i < midpoint) {
-                lowFreqSum += dataArray[i];
-              } else {
-                highFreqSum += dataArray[i];
-              }
-            }
+if (avg > VOLUME_THRESHOLD) {
+  blowOutCandles();
+}
 
-            const highAvg = highFreqSum / (dataArray.length / 2);
-            const lowAvg = lowFreqSum / (dataArray.length / 2);
 
-            const ratio = highAvg / (lowAvg + 1);
 
-            const BLOW_RATIO_THRESHOLD = 60;
+           function detectBlow() {
+  analyser.getByteFrequencyData(dataArray);
 
-            if (ratio > BLOW_RATIO_THRESHOLD && !blown) {
-              blown = true;
-              blowOutCandles();
-            }
+  let sum = 0;
+  for (let i = 0; i < dataArray.length; i++) {
+    sum += dataArray[i];
+  }
+
+  const avg = sum / dataArray.length;
+  const VOLUME_THRESHOLD = 35;
+
+  if (avg > VOLUME_THRESHOLD && !blown) {
+    blown = true;
+    blowOutCandles();
+  }
+
+  requestAnimationFrame(detectBlow);
+}
+
 
             requestAnimationFrame(detectBlow);
           }
@@ -153,7 +162,7 @@
           setTimeout(() => {
             colors.forEach((color) => {
               if (candle.classList.contains(color)) {
-                candle.classList.add("blown");
+               candle.classList.add("blown-" + color.replace("-candle", ""));
               }
             });
           }, delay);
@@ -170,4 +179,3 @@
     </script>
   </body>
 </html>
-
