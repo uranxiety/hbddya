@@ -6861,3 +6861,11 @@ body {
     width: 5px;
   }
 }
+.candle.blown,
+.candle.blown::before,
+.candle.blown::after {
+  animation: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
